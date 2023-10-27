@@ -1,0 +1,26 @@
+﻿@model SimpleCRUD.Web.Models.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login User";
+}
+
+<div class="container">
+
+    <h1 class="display-4">Login</h1>
+
+    <form method="post" asp-asp-controller="Auth" asp-action="Login">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label class="form-label">Email </label>
+            <input type="text" class="form-control" id="Email" name="Email" asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password </label>
+            <input type="password" class="form-control" id="password" name="Password" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-dark">Login</button>
+        </div>
+    </form>
+</div>

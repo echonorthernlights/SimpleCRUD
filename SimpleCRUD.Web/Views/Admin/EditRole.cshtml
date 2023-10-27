@@ -1,0 +1,30 @@
+﻿@model SimpleCRUD.Web.Models.ViewModels.EditRoleViewModel;
+@{
+    ViewData["Title"] = "Update Role";
+}
+
+<div class="container">
+
+    <h1 class="display-4">Edit Role</h1>
+
+    <form method="post" >
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label class="form-label">Role Id </label>
+            <input type="text" class="form-control" id="Id" name="Id" asp-for="@Model.Id" disabled />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Role Name </label>
+            <input type="text" class="form-control" id="RoleName" name="RoleName" asp-for="RoleName" asp-controller="Admin" asp-action="EditRole" />
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+        <button class="btn btn-dark">Update Role</button>
+            <a asp-controller="Admin" asp-action="EditUsersInRole" asp-route-roleId="@Model.Id" class="btn btn-dark">
+                Add Or Remove Users
+            </a>
+    </div>
+    </form>
+    
+</div>

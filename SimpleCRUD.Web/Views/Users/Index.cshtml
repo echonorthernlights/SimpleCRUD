@@ -1,0 +1,88 @@
+﻿@model SimpleCRUD.Web.Models.ViewModels.UsersViewModel;
+
+@{
+    ViewData["Title"] = "Add User Role Page";
+}
+
+    <div class="container-fluid">
+        <div class="text-center mb-3">
+            <h1 class="display-4">List Of Users</h1>
+           @*  @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="People" asp-action="Create">
+                    <button class="btn btn-primary">Add Person</button>
+                </a>
+            } *@
+        </div>
+        <div class="row gap-2 justify-content-center">
+
+
+            @foreach (var user in Model.Users)
+            {
+                <div class="col-3 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@user.UserName</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+                            <div class="d-flex justify-content-center">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="Details" asp-route-id="">
+                                        <button type="button" class="btn btn-light btn-sm btn-dark"><i class="fa fa-list" aria-hidden="true"></i></button>
+
+                                    </a>
+
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="Delete" asp-route-id="">
+                                        <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p><u>You need to login to perform operation(s)</u></p>
+                                }
+
+
+
+
+                                @*   <button type="button" class="btn btn-danger btn-sm"
+                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            asp-controller="People" asp-action="Delete"
+                            asp-route-id="@person.Id">Delete</button> *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Modal -->
+        @*  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <p>
+        Are you sure you want to delete this record
+        Id :
+        </p>
+        </div>
+        <div class="modal-footer">
+
+        <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="Delete">
+        <button type="button" class="btn btn-danger">Delete</button>
+
+        </a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+        </div>
+        </div>
+        </div> *@
+
+    </div>
+

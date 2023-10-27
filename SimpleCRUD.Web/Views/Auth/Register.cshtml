@@ -1,0 +1,42 @@
+﻿@model SimpleCRUD.Web.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register New User";
+}
+
+<div class="container">
+
+    <h1 class="display-4">Register New User</h1>
+
+    <form method="post" asp-controller="Auth" asp-action="Register">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label class="form-label">First Name </label>
+            <input type="text" class="form-control" id="firstname" name="FirstName" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Last Name </label>
+            <input type="text" class="form-control" id="lastname" name="LastName" asp-for="LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email </label>
+            <input type="Email" class="form-control" id="Email" name="Email" asp-for="Email" data-val="true" data-val-remote-url="/Auth/IsEmailInUse" data-val-remote="Emaiil is already used!!" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password </label>
+            <input type="password" class="form-control" id="password" name="Password" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirm Password </label>
+            <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3">
+            <button class="btn btn-dark">Register</button>
+        </div>
+    </form>
+</div>
