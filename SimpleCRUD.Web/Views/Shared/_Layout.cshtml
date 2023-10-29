@@ -1,9 +1,16 @@
-﻿@using Microsoft.AspNetCore.Identity;
+﻿
+
+
+@using Microsoft.AspNetCore.Identity;
 @using SimpleCRUD.Web.Models.ViewModels;
+<!--Get logged in user using SignInManager -->
+@* @inject SignInManager<ApplicationUser> signInManager; *@
+<!--Get logged in user using UserManager -->
 @inject UserManager<ApplicationUser> UserManager;
 @{
     var user = UserManager.GetUserAsync(User).Result;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,11 +46,17 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav">
+                        @* @if (signInManager.IsSignedIn(User)) { } *@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout @user.FirstName</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout @User.Identity.Name</a>
                             </li>
+                            @if(User.IsInRole("Admin")){
+                                <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListRoles">Admin Panel</a>
+                            </li>                                
+                            }
                         }
                         else
                         {

@@ -7,7 +7,8 @@ using System.Data;
 
 namespace SimpleCRUD.Web.Controllers
 {
-    [Authorize]
+    [Authorize (Roles = "Admin")]
+    
     public class AdminController : Controller
     {
 
