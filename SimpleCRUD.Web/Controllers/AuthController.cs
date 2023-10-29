@@ -94,9 +94,12 @@ namespace SimpleCRUD.Web.Controllers
                     LastName = model.LastName
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
-                if(result.Succeeded)
+                if (result.Succeeded && (!User.Identity.IsAuthenticated))
                 {
-                    await _signInManager.SignInAsync(user,isPersistent:false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "People");
+                }
+                else {
                     return RedirectToAction("Index", "People");
                 }
                 foreach (var error in result.Errors)
@@ -117,7 +120,15 @@ namespace SimpleCRUD.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-   
+        [HttpGet]
+        [AllowAnonymous]
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+
     }
 
 }

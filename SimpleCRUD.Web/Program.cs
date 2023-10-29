@@ -45,6 +45,7 @@ builder.Services.AddMvc().AddViewOptions(options =>
 builder.Services.Configure<CookieAuthenticationOptions>(IdentityConstants.ApplicationScheme, options =>
 {
     options.LoginPath = "/Auth/Login"; // Change this to your desired login route
+    options.AccessDeniedPath = "/Auth/AccessDenied";
 });
 
 var app = builder.Build();

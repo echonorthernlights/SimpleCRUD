@@ -1,7 +1,4 @@
-﻿
-
-
-@using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity;
 @using SimpleCRUD.Web.Models.ViewModels;
 <!--Get logged in user using SignInManager -->
 @* @inject SignInManager<ApplicationUser> signInManager; *@
@@ -44,6 +41,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="Index">People</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Manage
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListUsers">Users</a></li>
+                                    <li><a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListRoles">Roles</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav">
                         @* @if (signInManager.IsSignedIn(User)) { } *@
@@ -52,11 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Logout @User.Identity.Name</a>
                             </li>
-                            @if(User.IsInRole("Admin")){
-                                <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="ListRoles">Admin Panel</a>
-                            </li>                                
-                            }
+                            
                         }
                         else
                         {

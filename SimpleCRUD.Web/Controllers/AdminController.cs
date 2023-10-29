@@ -220,6 +220,16 @@ namespace SimpleCRUD.Web.Controllers
             return RedirectToAction("EditRole", new { Id = roleId });
         }
 
+        public IActionResult ListUsers()
+        {
+            var ListOfUsers = new UsersViewModel
+            {
+                Users = _userManager.Users.ToList()
+            };
+
+            return View("ListUsers", ListOfUsers);
+        }
+
 
     }
 }
